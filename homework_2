@@ -1,0 +1,77 @@
+#include <iostream>
+#include "Date.cpp"
+#include "Extention.hpp"
+using namespace std;
+using namespace ext;
+enum Grade
+{
+	F = 1,   // неявка
+	D = 2,  // неудовлетворительно
+	C = 3,  // удовлетворительно
+	B = 4,  // хорошо
+	A = 5,  // отлично      
+};
+
+struct Student
+{
+	int Id;
+	Grade Mark;
+	char Name[7];
+};
+int main(){
+	Student students[100];
+	for (int i = 0; i < 100; i++) 
+	{
+		students[i].Id = GetRandomValue(1, 1000);
+		students[i].Mark = static_cast<Grade>(GetRandomValue(1, 5));
+		int tempLength = GetRandomValue(3, 6);
+		for (int j = 0; j < tempLength; ++j)
+		{
+			int symbol = GetRandomValue('a', 'z');  // неявное преобразование из char в int в момент вызова функции
+			students[i].Name[j] = symbol; // неявное преобразование из int в char при приравнивании
+		}
+		for (int j = tempLength; j < 7; ++i) 
+		{
+			students[i].Name[j] = '\0';
+		}
+	}
+	int sort;
+	cin >> sort;
+		if (sort = 1) {
+			for (int i = 0; i < 100; i++)
+			{
+				for (int j = i; j < 100; j++)
+				{
+					int buf;
+					if (students[i].Id< students[j].Id)
+					{
+						buf = students[i].Id;
+						students[i].Id = students[j].Id;
+						students[j].Id = buf;
+					}
+				}
+			}
+		}
+		else if (sort = 2)
+		{
+			for (int i = 0; i < 100; i++)
+			{
+				for (int j = i; j < 100; j++)
+				{
+					int buf;
+					if (students[i].Id < students[j].Id)
+					{
+						buf = static_cast<Grade>(students[i].Mark);
+						students[i].Mark = static_cast<Grade>(students[j].Mark);
+						students[j].Mark = static_cast<Grade>(buf);
+					}
+				}
+			}
+		}
+		else if ( sort = 3)
+		{
+
+		
+
+		}
+}
