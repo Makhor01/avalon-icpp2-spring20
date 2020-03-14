@@ -1,6 +1,7 @@
+
 #include <iostream>
-#include "Date.cpp"
-#include "Extention.hpp"
+#include "Extention.h"
+
 using namespace std;
 using namespace ext;
 enum Grade
@@ -18,9 +19,9 @@ struct Student
 	Grade Mark;
 	char Name[7];
 };
-int main(){
+int main() {
 	Student students[100];
-	for (int i = 0; i < 100; i++) 
+	for (int i = 0; i < 100; i++)
 	{
 		students[i].Id = GetRandomValue(1, 1000);
 		students[i].Mark = static_cast<Grade>(GetRandomValue(1, 5));
@@ -30,48 +31,123 @@ int main(){
 			int symbol = GetRandomValue('a', 'z');  // неявное преобразование из char в int в момент вызова функции
 			students[i].Name[j] = symbol; // неявное преобразование из int в char при приравнивании
 		}
-		for (int j = tempLength; j < 7; ++i) 
+		for (int j = tempLength; j < 7; ++j)
 		{
 			students[i].Name[j] = '\0';
 		}
 	}
 	int sort;
 	cin >> sort;
-		if (sort = 1) {
-			for (int i = 0; i < 100; i++)
+	if (sort == 1) {
+		for (int i = 0; i < 100; i++)
+		{
+			for (int j = i; j < 100; j++)
 			{
-				for (int j = i; j < 100; j++)
+				
+				if (students[i].Id < students[j].Id)
 				{
-					int buf;
-					if (students[i].Id< students[j].Id)
-					{
-						buf = students[i].Id;
-						students[i].Id = students[j].Id;
-						students[j].Id = buf;
-					}
+					Student temp = students[i];
+					students[i] = students[j];
+					students[j] = students[i];
+					
 				}
 			}
 		}
-		else if (sort = 2)
+	}
+	else if (sort == 2)
+	{
+		for (int i = 0; i < 100; i++)
 		{
-			for (int i = 0; i < 100; i++)
+			for (int j = i; j < 100; j++)
 			{
-				for (int j = i; j < 100; j++)
+				int buf;
+				if (students[i].Mark < students[j].Mark)
 				{
-					int buf;
-					if (students[i].Id < students[j].Id)
-					{
-						buf = static_cast<Grade>(students[i].Mark);
-						students[i].Mark = static_cast<Grade>(students[j].Mark);
-						students[j].Mark = static_cast<Grade>(buf);
-					}
+					Student temp = students[i];
+					students[i] = students[j];
+					students[j] = students[i];
 				}
 			}
 		}
-		else if ( sort = 3)
+	}
+	else if (sort == 3)
+	{
+		for (int i = 0; i < 100; i++)
 		{
+			for (int j = i; j < 100; j++)
+			{
+				for (int k = 0; k < 7; k++)
+				{
+					if (students[i].Name[k] < students[j].Name[k])
+					{
+						Student temp = students[i];
+						students[i] = students[j];
+						students[j] = students[i];
+					}
+					break;
+				}
+			}
+		}
 
+
+	}
+	for (int i = 0; i < 100; i++)
+	{
+		cout << students[i].Id << " " << students[i].Mark << " " << students[i].Name << endl;
+	}
+	int ots[5] ;
+	for (int i = 0; i < 100; i++)
+	{
+		for (int k = 0; k < 5; k++)
+		{
+		if (students[i].Mark == k) {
+			ots[k]++;
+		}
+		else if (students[i].Mark == k)
+		{
+		ots[k]++;
+		}
+		else if (students[i].Mark == k)
+		{
+		ots[k]++;
+		}
+		else if (students[i].Mark == k)
+		{
+		ots[k]++;
+		}
+		else if (students[i].Mark == k)
+		{
+		ots[k]++;
+		}
+		}
 		
-
+	}
+	int moda = 0;
+	for (int i = 0; i < 5; i++)
+	{
+		if (moda < ots[i]) {
+			moda = ots[i];
 		}
+	}
+	cout << moda<< endl;
+	for (int i = 0; i < 100; i++)
+	{
+		for (int j = i; j < 100; j++)
+		{
+			
+			if (students[i].Mark < students[j].Mark)
+			{
+				Student temp = students[i];
+				students[i] = students[j];
+				students[j] = students[i];
+			}
+		}
+	}
+	/*for (int i = 0; i < 100; i++)
+	{
+		cout << students[i].Id << " " << students[i].Mark << " " << students[i].Name << endl;
+	}*/
+	cout << students[25].Mark << endl;
+	cout << students[50].Mark << endl;
+	cout << students[75].Mark << endl;
 }
